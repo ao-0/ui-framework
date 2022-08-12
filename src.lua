@@ -221,7 +221,10 @@ function framework.SizeSlider(slider, fill, min, max, tweenInfo)
 
         sliderTypes.Updated:Fire(value)
     end
-
+    function sliderTypes:ChangeSettings(a, b)
+        min = a or 1
+        max = b or 100
+    end
     return sliderTypes
 end
 
