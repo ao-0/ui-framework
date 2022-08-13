@@ -630,7 +630,10 @@ function framework.Keybind(object, blacklist)
 
     local function bind()
         local binding
-        binding = inputService.InputBegan:Connect(function(input)
+        binding = inputService.InputBegan:Connect(function(input, gameProcessedEvent)
+            if gameProcessedEvent then
+                    return
+             end
             if input.UserInputType == Enum.UserInputType.Keyboard then
                 if not table.find(blacklist, input.KeyCode) then
                     task.wait()
