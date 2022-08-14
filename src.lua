@@ -652,14 +652,20 @@ function framework.Keybind(object, blacklist)
         end)
     end
 
-    object.InputBegan:Connect(function(input)
+    object.InputBegan:Connect(function(input, gameProcessedEvent)
+         if gameProcessedEvent then
+            return
+         end
         if input.UserInputType == Enum.UserInputType.MouseButton1 then
             task.wait()
             bind()
         end
     end)
 
-    inputService.InputBegan:Connect(function(input)
+    inputService.InputBegan:Connect(function(input, gameProcessedEvent)
+         if gameProcessedEvent then
+            return
+         end
         if not inBind then
             if input.UserInputType == Enum.UserInputType.Keyboard then
                 if input.KeyCode == keyChosen then
